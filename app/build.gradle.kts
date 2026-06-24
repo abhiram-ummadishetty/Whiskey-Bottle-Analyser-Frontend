@@ -15,9 +15,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "0.1.0"
-
-        manifestPlaceholders["mwdat_application_id"] = "0"
-        manifestPlaceholders["mwdat_client_token"] = ""
     }
 
     buildFeatures { compose = true }
@@ -30,6 +27,9 @@ android {
 
     packaging {
         resources.excludes += setOf("META-INF/AL2.0", "META-INF/LGPL2.1")
+        jniLibs {
+            useLegacyPackaging = true
+        }
     }
 }
 
@@ -76,6 +76,7 @@ dependencies {
     // Meta Wearables DAT SDK
     implementation("com.meta.wearable:mwdat-core:0.7.0")
     implementation("com.meta.wearable:mwdat-camera:0.7.0")
+    debugImplementation("com.meta.wearable:mwdat-mockdevice:0.7.0")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 }

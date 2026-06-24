@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
         android:usesPermissionFlags="neverForLocation" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
@@ -25,8 +26,8 @@
         android:theme="@style/Theme.EdgeAI">
 
         <!-- Meta Wearables SDK Credentials (using '0' for development) -->
-        <meta-data android:name="com.meta.wearable.mwdat.APPLICATION_ID" android:value="${mwdat_application_id}" />
-        <meta-data android:name="com.meta.wearable.mwdat.CLIENT_TOKEN" android:value="${mwdat_client_token}" />
+        <meta-data android:name="com.meta.wearable.mwdat.APPLICATION_ID" android:value="\ 0" />
+        <meta-data android:name="com.meta.wearable.mwdat.CLIENT_TOKEN" android:value=" " />
         <meta-data android:name="com.meta.wearable.mwdat.DAM_ENABLED" android:value="true" />
 
         <activity
@@ -36,6 +37,14 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Meta Wearables SDK Registration Callback -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="edgeai" />
             </intent-filter>
         </activity>
     </application>

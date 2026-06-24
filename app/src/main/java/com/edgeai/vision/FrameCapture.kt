@@ -36,6 +36,16 @@ fun ImageProxy.toJpeg(quality: Int = 70, maxDim: Int = 720): ByteArray {
     return out.toByteArray()
 }
 
+/**
+ * Converts raw NV21 bytes to a JPEG byte array.
+ */
+fun nv21ToJpeg(nv21: ByteArray, width: Int, height: Int, quality: Int = 70): ByteArray {
+    val yuv = YuvImage(nv21, ImageFormat.NV21, width, height, null)
+    val baos = ByteArrayOutputStream()
+    yuv.compressToJpeg(Rect(0, 0, width, height), quality, baos)
+    return baos.toByteArray()
+}
+
 private fun yuv420ToNv21(image: ImageProxy): ByteArray {
     val y = image.planes[0].buffer
     val u = image.planes[1].buffer

@@ -11,10 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.edgeai.ui.AppNav
+import com.meta.wearable.dat.core.Wearables
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // 1. Initialize the Meta Wearables SDK with Activity context
+        // This is crucial for attestation and deep-link handling.
+        Wearables.initialize(this)
+        
         setContent { EdgeAITheme { AppNav() } }
     }
 }
